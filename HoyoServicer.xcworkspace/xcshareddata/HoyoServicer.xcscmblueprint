@@ -1,0 +1,36 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B69EA00F5F131820FF9BA77560B5184570563F17",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "3118fc39-a0b7-42db-aa67-a61a1d4c28e8++3003" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3118fc39-a0b7-42db-aa67-a61a1d4c28e8++3003" : 0,
+    "B69EA00F5F131820FF9BA77560B5184570563F17" : 0
+  },
+<<<<<<< HEAD
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2C1E19C8-B0AB-4EDD-9127-B6C6CA0414A5",
+=======
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C9CD0036-7D69-4308-A4C7-B2122B422AF6",
+>>>>>>> master2
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3118fc39-a0b7-42db-aa67-a61a1d4c28e8++3003" : "HoyoServicer\/HoyoServicer\/ExtralLibary\/PopoverView\/",
+    "B69EA00F5F131820FF9BA77560B5184570563F17" : "HoyoServicer\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HoyoServicer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "HoyoServicer.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/121.199.62.239:81\/svn\/repo2",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3118fc39-a0b7-42db-aa67-a61a1d4c28e8++3003"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ozner-app-ios-org\/HoyoServicer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B69EA00F5F131820FF9BA77560B5184570563F17"
+    }
+  ]
+}

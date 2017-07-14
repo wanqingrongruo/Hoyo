@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="147" id="KGk-i7-Jjw" customClass="RNVIPictureTableViewCell" customModule="HoyoServicer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="146.5" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="146.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeO-NS-BDO" userLabel="backView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="146.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="prC-h9-yG9">
+                                <rect key="frame" x="123" y="36" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="prC-h9-yG9" secondAttribute="height" multiplier="1:1" id="13c-WQ-K5X"/>
+                                    <constraint firstAttribute="height" constant="100" id="Nds-Vf-KhT"/>
+                                    <constraint firstAttribute="width" constant="100" id="lGe-yY-a8j"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="lGe-yY-a8j"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车辆图片(VI):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Q9-hb-say" userLabel="VI">
+                                <rect key="frame" x="15" y="8" width="100" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="FVz-L3-OZM"/>
+                                    <constraint firstAttribute="width" constant="100" id="NOk-yl-xAk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Q9-hb-say" firstAttribute="leading" secondItem="aeO-NS-BDO" secondAttribute="leading" constant="15" id="2XU-3t-98x"/>
+                            <constraint firstItem="prC-h9-yG9" firstAttribute="top" secondItem="6Q9-hb-say" secondAttribute="bottom" constant="8" id="3dN-Fx-fva"/>
+                            <constraint firstAttribute="bottom" secondItem="prC-h9-yG9" secondAttribute="bottom" constant="10" id="RYl-hK-XLj"/>
+                            <constraint firstItem="6Q9-hb-say" firstAttribute="top" secondItem="aeO-NS-BDO" secondAttribute="top" constant="8" id="XKk-xw-BXd"/>
+                            <constraint firstItem="prC-h9-yG9" firstAttribute="leading" secondItem="6Q9-hb-say" secondAttribute="trailing" constant="8" id="YfX-l5-RC0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aeO-NS-BDO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9O1-nC-A7v"/>
+                    <constraint firstAttribute="trailing" secondItem="aeO-NS-BDO" secondAttribute="trailing" id="Ifr-40-B7g"/>
+                    <constraint firstItem="aeO-NS-BDO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Z00-L5-nma"/>
+                    <constraint firstAttribute="bottom" secondItem="aeO-NS-BDO" secondAttribute="bottom" id="bjZ-u5-4dc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="viPictureImageView" destination="prC-h9-yG9" id="2HO-7J-3TH"/>
+            </connections>
+            <point key="canvasLocation" x="503" y="94.5"/>
+        </tableViewCell>
+    </objects>
+</document>

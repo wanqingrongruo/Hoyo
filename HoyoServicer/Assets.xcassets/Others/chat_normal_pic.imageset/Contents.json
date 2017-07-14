@@ -1,0 +1,35 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 2,
+          "height" : 3
+        },
+        "cap-insets" : {
+          "bottom" : 50,
+          "top" : 47,
+          "right" : 59,
+          "left" : 54
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "qqi_chat_normal_nor_pic@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

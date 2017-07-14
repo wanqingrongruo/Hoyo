@@ -1,0 +1,68 @@
+PODS:
+  - ALCameraViewController (1.2.7)
+  - Appirater (2.0.5)
+  - BaiduMapKit (3.2.1)
+  - Bugly (2.4.6)
+  - ESTabBarController-swift (2.0)
+  - IQKeyboardManager (4.0.4)
+  - JPSThumbnailAnnotation (1.0.0)
+  - KMNavigationBarTransition (0.0.10)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.12)
+  - MonkeyKing (1.2.1)
+  - Reachability (3.2)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SJFluidSegmentedControl (1.1.2)
+  - SnapKit (3.0.2)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - ALCameraViewController
+  - Appirater (~> 2.0.5)
+  - BaiduMapKit
+  - Bugly
+  - ESTabBarController-swift
+  - IQKeyboardManager (= 4.0.4)
+  - JPSThumbnailAnnotation
+  - KMNavigationBarTransition
+  - MBProgressHUD (~> 0.9.2)
+  - MJRefresh (~> 3.1.0)
+  - MonkeyKing
+  - Reachability (~> 3.2)
+  - SDWebImage (~> 3.7.5)
+  - SJFluidSegmentedControl (~> 1.0)
+  - SnapKit (~> 3.0.0)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: adf34cfb4c9f2ff4e3c420c6d9fb1e2eaf3b3791
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  ALCameraViewController: 4a513b8d5ecfdb3f34c50b1d469c373aae1ec7b4
+  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
+  BaiduMapKit: 9c748785aa3dddfc41dcb70c14b21ce32f680930
+  Bugly: 7756e72c59387b0d490f46e83ab458ae94ee7fba
+  ESTabBarController-swift: 096f473faaddd32081c006e4f34498757ff485b0
+  IQKeyboardManager: 4a6f83b540283c2645aaeba2bd8dc0f09b5c77f8
+  JPSThumbnailAnnotation: 4b35e87788d903db3fec294e7ef44136b9f741fb
+  KMNavigationBarTransition: 7a519f915cfe6fe09764b2061ea01043b445f7d2
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MonkeyKing: f44795a0ed91a785b0e0bd2e4b6145199901528e
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SJFluidSegmentedControl: efd26ea5f0832c715e2750314a2dc0cc81e39ae5
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
+
+PODFILE CHECKSUM: 0ec0988970b6ab21e81538d95993827713b57992
+
+COCOAPODS: 1.2.1.beta.1

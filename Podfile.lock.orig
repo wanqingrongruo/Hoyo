@@ -1,0 +1,60 @@
+PODS:
+  - ALCameraViewController (1.1.9)
+  - Appirater (2.0.5)
+  - BaiduMapKit (2.10.2)
+  - Bugly (2.2)
+  - IQKeyboardManager (4.0.1)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.0)
+  - MonkeyKing (0.9.2)
+  - Reachability (3.2)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SnapKit (0.20.0)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - ALCameraViewController (~> 1.1.9)
+  - Appirater (~> 2.0.5)
+  - BaiduMapKit
+  - Bugly
+  - IQKeyboardManager (= 4.0.1)
+  - MBProgressHUD (~> 0.9.2)
+  - MJRefresh (~> 3.1.0)
+  - MonkeyKing (~> 0.9.2)
+  - Reachability (~> 3.2)
+  - SDWebImage (~> 3.7.5)
+  - SnapKit (~> 0.20.0)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  ALCameraViewController: f171ffb7e84d211277a0f97823a2bda7418dc573
+  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
+  BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
+  Bugly: b24bdd3017bb05d4749d66e1b95bd1ba7207e7bd
+  IQKeyboardManager: 0c11a0cb402a621f7aa1aff506f60ab6d2388969
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  MonkeyKing: 2cf420f9202a51714734374c97d96cf496e7ae2b
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+<<<<<<< HEAD
+COCOAPODS: 0.39.0
+=======
+PODFILE CHECKSUM: 7885f9c4ae6d68553e7c97a3a0c47c9f05a5108a
+
+COCOAPODS: 1.0.0.beta.8
+>>>>>>> master

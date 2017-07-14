@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Website2</key>
+	<string>http://192.168.173.22</string>
+	<key>Website</key>
+	<string>http://wechat.hoyofuwu.com</string>
+	<key>TokenFailCode</key>
+	<string>-10015</string>
+	<key>SuccessCode</key>
+	<string>0</string>
+	<key>Path</key>
+	<dict>
+		<key>CreateWaterCard</key>
+		<string>/AppInterface/CreateWaterCard</string>
+		<key>GetWaterValueInfo</key>
+		<string>/AppInterface/GetWaterValueInfo</string>
+		<key>RobOrderV2</key>
+		<string>/AppInterface/RobOrderV2</string>
+		<key>BindNewBlankCard2</key>
+		<string>/Command/BindNewBlankCardV2</string>
+		<key>GetGroupDetails</key>
+		<string>/Group/GetGroupDetails</string>
+		<key>SignOutTeam</key>
+		<string>/Group/SignOutTeam</string>
+		<key>CreateGroup</key>
+		<string>/Group/CreateGroup</string>
+		<key>JoinTeam</key>
+		<string>/Group/JoinTeam</string>
+		<key>CreateTeam</key>
+		<string>/Group/CreateTeam</string>
+		<key>QueryTeamList</key>
+		<string>/Group/QueryTeamList</string>
+		<key>GetTeamMemberDetails</key>
+		<string>/Group/GetTeamMemberDetails</string>
+		<key>GetTeamDetails</key>
+		<string>/Group/GetTeamDetails</string>
+		<key>GetTeamMemberList</key>
+		<string>/Group/GetTeamMemberList</string>
+		<key>GetGroupListInTeam</key>
+		<string>/Group/GetTeamList</string>
+		<key>MemberIdentifier</key>
+		<string>/Group/GetNowAuthorityDetail</string>
+		<key>GetQYInstallInfo</key>
+		<string>/AppInterface/GetQYInstallInfo</string>
+		<key>SendPhoneCodeForInstallMachine</key>
+		<string>/Command/SendPhoneCode</string>
+		<key>AlipayAppPrePay</key>
+		<string>/AppInterface/AlipayAppPrePay</string>
+		<key>NoServiceFinshOrder</key>
+		<string>/AppInterface/NoServiceFinshOrder</string>
+		<key>GeCarInfo</key>
+		<string>/AppInterface/VehicleInfo</string>
+		<key>WechatQueryPayResult</key>
+		<string>/Command/WeChatQueryPayResult</string>
+		<key>WechatAppPrePay</key>
+		<string>/AppInterface/WeChatAppPrePay</string>
+		<key>GetOrderShouldPayMoney</key>
+		<string>/AppInterface/GetOrderShouldPayMoney</string>
+		<key>GetPreRankDetails</key>
+		<string>/AppInterface/GetPreRankDetails</string>
+		<key>GetPriceTable</key>
+		<string>/Command/GetPriceTableByCRM</string>
+		<key>WithDraw</key>
+		<string>/AppInterface/WithDraw</string>
+		<key>ResetPassword</key>
+		<string>/FamilyAccount/ResetPassword</string>
+		<key>SendMessage</key>
+		<string>/Command/SendMessage</string>
+		<key>BingJgNotifyId</key>
+		<string>/Command/BingJgNotifyId</string>
+		<key>UploadImages</key>
+		<string>/Upload/Images</string>
+		<key>SendPhoneCode</key>
+		<string>/Command/SendPhoneCode</string>
+		<key>AppChenkPhone</key>
+		<string>/FamilyAccount/AppChenkPhone</string>
+		<key>AppRegister</key>
+		<string>/FamilyAccount/AppRegister</string>
+		<key>AppLogin</key>
+		<string>/FamilyAccount/AppLogin</string>
+		<key>GetCurrentUserInfo</key>
+		<string>/AppInterface/GetCurrentUserInfo</string>
+		<key>UpdateUserInfo</key>
+		<string>/FamilyAccount/UpdateUserInfo</string>
+		<key>GetOrderList</key>
+		<string>/AppInterface/GetOrderList</string>
+		<key>RobOrder</key>
+		<string>/AppInterface/RobOrder</string>
+		<key>FinshOrder</key>
+		<string>/AppInterface/FinshOrderV2</string>
+		<key>GetOrderDetails</key>
+		<string>/AppInterface/GetOrderDetails</string>
+		<key>NewVersion</key>
+		<string>/Command/NewVersion</string>
+		<key>RefreshIndex</key>
+		<string>/AppInterface/RefreshIndex</string>
+		<key>SubmitTime</key>
+		<string>/AppInterface/SubmitTime</string>
+		<key>GetHomeTimeList</key>
+		<string>/AppInterface/GetHomeTimeList</string>
+		<key>PartnerCommand</key>
+		<string>/AppInterface/PartnerCommand</string>
+		<key>UpgradeAuthority</key>
+		<string>/AppInterface/UpgradeAuthority</string>
+		<key>GetNowAuthorityDetail</key>
+		<string>/AppInterface/GetNowAuthorityDetail</string>
+		<key>GetMyScoreDetails</key>
+		<string>/AppInterface/GetMyScoreDetails</string>
+		<key>BindNewBlankCard</key>
+		<string>/Command/BindNewBlankCard</string>
+		<key>GetOwenMoney</key>
+		<string>/AppInterface/GetOwenMoney</string>
+		<key>GetOwenMoneyDetails</key>
+		<string>/AppInterface/GetOwenMoneyDetails</string>
+		<key>GetOwenBindBlankCard</key>
+		<string>/Command/GetOwenBindBlankCard</string>
+		<key>GetMyGroupMembers</key>
+		<string>/AppInterface/GetMyGroupMembers</string>
+		<key>RemoveGroupMember</key>
+		<string>/AppInterface/RemoveGroupMember</string>
+		<key>AuditGroupMember</key>
+		<string>/AppInterface/AuditGroupMember</string>
+		<key>DeleteTeamAll</key>
+		<string>/AppInterface/RemoveGroup</string>
+		<key>GetCurrentRealNameInfo</key>
+		<string>/AppInterface/GetCurrentRealNameInfo</string>
+		<key>UploadRealnameAuthinfo</key>
+		<string>/AppInterface/UploadRealnameAuthinfo</string>
+		<key>CheckServiceTrain</key>
+		<string>/AppInterface/CheckServiceTrain</string>
+		<key>UpdateServiceTrainMachine</key>
+		<string>/AppInterface/UpdateServiceTrainMachine</string>
+		<key>GetServiceRecordByServiceTrain</key>
+		<string>/AppInterface/GetServiceRecordByServiceTrain</string>
+	</dict>
+	<key>ErrorCode</key>
+	<dict>
+		<key>-1</key>
+		<string>要加入的小组不存在
+要加入的小组不存在
+</string>
+		<key>-10088</key>
+		<string>该订单产品未正常出库，不允许结单</string>
+		<key>-10092</key>
+		<string>同步给礼卡通系统异常</string>
+		<key>-10091</key>
+		<string>IMEI值重复</string>
+		<key>-10078</key>
+		<string>客户下单位置异常</string>
+		<key>-10077</key>
+		<string>结单位置与客户下单位置不服</string>
+		<key>0</key>
+		<string>获取数据为空</string>
+		<key>-40404</key>
+		<string>网络未连接</string>
+		<key>-10001</key>
+		<string>登陆参数/模式错误</string>
+		<key>-10002</key>
+		<string>微信APPID为空</string>
+		<key>-10003</key>
+		<string>刷新微信AccessToken错误
+</string>
+		<key>-10004</key>
+		<string>服务器异常错误</string>
+		<key>-10005</key>
+		<string>获取微信用户信息错误</string>
+		<key>-10006</key>
+		<string>用户UserTOken保存数据库失败
+</string>
+		<key>-10007</key>
+		<string>微信用户未注册绑定手机</string>
+		<key>-10008</key>
+		<string>用户已经不存在</string>
+		<key>-10009</key>
+		<string>访问接口参数错误</string>
+		<key>-10010</key>
+		<string>验证码发送频繁请稍后再试</string>
+		<key>-10011</key>
+		<string>手机号已经被注册</string>
+		<key>-10012</key>
+		<string>验证码无效</string>
+		<key>-10013</key>
+		<string>验证码已经使用过了</string>
+		<key>-10014</key>
+		<string>验证码已经过期了</string>
+		<key>-10015</key>
+		<string>权限错误，无权访问</string>
+		<key>-10016</key>
+		<string>实名信息提取失败</string>
+		<key>-10017</key>
+		<string>身份证已经被使用过了</string>
+		<key>-10018</key>
+		<string>手机号或者密码错误</string>
+		<key>-10019</key>
+		<string>统一订单号生产失败，请稍后再试</string>
+		<key>-10020</key>
+		<string>订单生成失败</string>
+		<key>-10021</key>
+		<string>非法注册
+非法注册
+</string>
+		<key>-10022</key>
+		<string>订单不存在或者被抢</string>
+		<key>-10023</key>
+		<string>订单已经被抢了
+</string>
+		<key>-10024</key>
+		<string>订单超过了可抢时间</string>
+		<key>-10025</key>
+		<string>上传图片失败</string>
+		<key>-10026</key>
+		<string>非法操作
+</string>
+		<key>-10027</key>
+		<string>订单已经提交过完成</string>
+		<key>-10028</key>
+		<string>已经评价过了</string>
+		<key>-10029</key>
+		<string>非法支付</string>
+		<key>-10030</key>
+		<string>定位数据未上传</string>
+		<key>-10031</key>
+		<string>已经是当前角色，不用升级</string>
+		<key>-10032</key>
+		<string>有角色权限在审核中，等上一次审核结果出来后，再提交</string>
+		<key>-10033</key>
+		<string>组(合伙人)不存在</string>
+		<key>-10034</key>
+		<string>当前组(合伙人)不能加入</string>
+		<key>-10035</key>
+		<string>已经是当前组（合伙人）的成员</string>
+		<key>-10036</key>
+		<string>已经加入到了其他组，退出后再加入</string>
+		<key>-10037</key>
+		<string>你不是当前组的成员</string>
+		<key>-10038</key>
+		<string>银行卡已经被自己绑定过了</string>
+		<key>-10039</key>
+		<string>你还没有加入任何团队,请联系负责人哦</string>
+		<key>-10040</key>
+		<string>未经过实名认证</string>
+		<key>70000</key>
+		<string>审核中</string>
+		<key>70001</key>
+		<string>审核通过</string>
+		<key>70002</key>
+		<string>审核失败</string>
+		<key>70003</key>
+		<string>被封号了</string>
+	</dict>
+	<key>URL</key>
+	<dict>
+		<key>Agreements</key>
+		<string>http://cup.ozner.net/app/cn/mzsm.html</string>
+	</dict>
+	<key>TroubleHandle</key>
+	<dict>
+		<key>130000015</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>无服务未上门完成</string>
+			</array>
+		</dict>
+		<key>130000014</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>无服务未上门完成待审核</string>
+			</array>
+		</dict>
+		<key>130000013</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>无服务上门完成</string>
+			</array>
+		</dict>
+		<key>130000012</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>无服务上门完成待审核</string>
+			</array>
+		</dict>
+		<key>123000012</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>清洁消毒</string>
+				<string>defaultImage</string>
+			</array>
+		</dict>
+		<key>124010010</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>微信支付</string>
+			</array>
+		</dict>
+		<key>124010040</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>无需支付</string>
+			</array>
+		</dict>
+		<key>128010020</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>现金支付</string>
+			</array>
+		</dict>
+		<key>128010010</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>已经支付</string>
+			</array>
+		</dict>
+		<key>128000010</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>等待支付</string>
+			</array>
+		</dict>
+		<key>500000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>其他费用</string>
+			</array>
+		</dict>
+		<key>400000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>工程师支付费用</string>
+			</array>
+		</dict>
+		<key>300000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>打赏费用</string>
+			</array>
+		</dict>
+		<key>200000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>服务费用</string>
+			</array>
+		</dict>
+		<key>100000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>加急费用</string>
+			</array>
+		</dict>
+		<key>210000012</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>等待工程师支付</string>
+			</array>
+		</dict>
+		<key>110000001</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单等待审核</string>
+			</array>
+		</dict>
+		<key>110000011</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单已经接单</string>
+			</array>
+		</dict>
+		<key>110000002</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单审核通过</string>
+			</array>
+		</dict>
+		<key>110000003</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单审核驳回</string>
+			</array>
+		</dict>
+		<key>110000004</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单可以分发</string>
+			</array>
+		</dict>
+		<key>110000005</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单已经指派</string>
+			</array>
+		</dict>
+		<key>110000006</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单已经取消</string>
+			</array>
+		</dict>
+		<key>110000007</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单异常</string>
+			</array>
+		</dict>
+		<key>110000008</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单完成</string>
+			</array>
+		</dict>
+		<key>110000010</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>订单退回</string>
+			</array>
+		</dict>
+		<key>110000013</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>用户取消</string>
+			</array>
+		</dict>
+		<key>210000011</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>等待用户支付</string>
+			</array>
+		</dict>
+		<key>111010001</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>送修</string>
+				<string>order_repair</string>
+			</array>
+		</dict>
+		<key>111010002</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>整理维护</string>
+				<string>order_repair</string>
+			</array>
+		</dict>
+		<key>111010003</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>不出水</string>
+				<string>order_full</string>
+			</array>
+		</dict>
+		<key>111010004</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>不显示</string>
+				<string>order_install</string>
+			</array>
+		</dict>
+		<key>111010005</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>漏水</string>
+				<string>order_full</string>
+			</array>
+		</dict>
+		<key>111010006</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>出水异味</string>
+				<string>order_full</string>
+			</array>
+		</dict>
+		<key>123000001</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>退货</string>
+				<string>order_refund</string>
+			</array>
+		</dict>
+		<key>123000002</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>换货</string>
+				<string>order_change_pro</string>
+			</array>
+		</dict>
+		<key>123000003</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>移机</string>
+				<string>order_move</string>
+			</array>
+		</dict>
+		<key>123000004</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>充水</string>
+				<string>order_full</string>
+			</array>
+		</dict>
+		<key>123000005</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>整改</string>
+				<string>order_repair</string>
+			</array>
+		</dict>
+		<key>123000006</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>安装</string>
+				<string>order_install</string>
+			</array>
+		</dict>
+		<key>123000007</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>维修维护</string>
+				<string>order_repair</string>
+			</array>
+		</dict>
+		<key>123000008</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>换芯</string>
+				<string>order_changefilter</string>
+			</array>
+		</dict>
+		<key>123000009</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>送货</string>
+				<string>order_delivery</string>
+			</array>
+		</dict>
+		<key>123000010</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>水质检测</string>
+				<string>order_full</string>
+			</array>
+		</dict>
+		<key>123000011</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>现场勘测</string>
+				<string>order_repair</string>
+			</array>
+		</dict>
+		<key>125010000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>上门</string>
+				<string>order_install</string>
+			</array>
+		</dict>
+		<key>125020000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>寄送服务</string>
+				<string>order_delivery</string>
+			</array>
+		</dict>
+		<key>125030000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>远程指导</string>
+				<string>order_repair</string>
+			</array>
+		</dict>
+		<key>125040000</key>
+		<dict>
+			<key>New item</key>
+			<array>
+				<string>送装一体</string>
+				<string>order_install</string>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>

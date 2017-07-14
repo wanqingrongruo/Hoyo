@@ -1,0 +1,689 @@
+//
+//  HomeTableViewController.swift
+//  HoyoServicer
+//
+//  Created by 赵兵 on 16/3/28.
+//  Copyright © 2016年 com.ozner.net. All rights reserved.
+//
+
+
+import UIKit
+import MBProgressHUD
+
+class HomeTableViewController: UIViewController{
+    
+    // MARK: - properties
+    
+    var manager :CLLocationManager?
+    var isLocationSuccess:Bool = false // 是否定位成功
+    var nextTitle:String!
+    var action :String!
+    var repeatTime = 0
+    var counttime:NSTimer!
+    
+    //  var orders=[Order]()
+    //    var addressDicBlock:((CLLocationCoordinate2D,CLPlacemark)->Void)?
+    var tableView:UITableView!
+    var headImgView:UIImageView!
+    
+    var addressDic=NSMutableDictionary()
+    
+    //    var pagesize = 10
+    //    var pageindex = 0
+    
+    var tmpWhitchImg = true
+    
+    // MARK: - Life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //  self.navigationController?.interactivePopGestureRecognizer?.enabled=true
+        self.view.backgroundColor=UIColor.whiteColor()
+        
+        setUI()
+        
+        //        myLocationManager()
+        
+        pushMeg()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 隐藏导航
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        myLocationManager()
+        
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(OrderPushNotification)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+}
+
+// MARK: - public methods
+
+extension HomeTableViewController{
+    
+    // UI
+    
+    func setUI(){
+        
+        //头部图片
+        headImgView=UIImageView(frame: CGRect(x: 0, y: 0, width: WIDTH_SCREEN, height: 228*HEIGHT_SCREEN/667))
+        headImgView.image=UIImage(named: "home_top_1")
+        self.view.addSubview(headImgView)
+        
+        let logoImg = UIImageView(image: UIImage(named: "HoyoLogoOfHead"))
+        logoImg.frame=CGRectMake((WIDTH_SCREEN/2-117*HEIGHT_SCREEN/667), 25*HEIGHT_SCREEN/667,234*HEIGHT_SCREEN/667, 63*HEIGHT_SCREEN/667)
+        logoImg.contentMode=UIViewContentMode.ScaleToFill
+        self.view.addSubview(logoImg)
+        
+        //表视图
+        self.automaticallyAdjustsScrollViewInsets=false
+        tableView=UITableView(frame: CGRect(x: 0, y: 228*HEIGHT_SCREEN/667, width: WIDTH_SCREEN, height: HEIGHT_SCREEN-HEIGHT_TabBar-228*HEIGHT_SCREEN/667))
+        self.view.addSubview(tableView)
+        tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "HomeTableViewCell")
+        tableView.separatorStyle=UITableViewCellSeparatorStyle.None
+        tableView.delegate=self
+        tableView.dataSource=self
+        //添加下拉加载数据事件
+        tableView.addPullToRefreshWithActionHandler {
+            [weak self] in
+            if let strongSelf=self{
+                strongSelf.refresh()
+            }
+        }
+        
+    }
+    
+    // 推送
+    
+    func pushMeg(){
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CurrentUserDidChange), name: CurrentUserDidChangeNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeTableViewController.pushOrederGY), name: OrderPushNotification, object: nil)
+        
+        if NSUserDefaults.standardUserDefaults().valueForKey(OrderPushNotification) as? String == OrderPushNotification {
+            NSUserDefaults.standardUserDefaults().setValue(nil, forKey: OrderPushNotification)
+            pushOrederGY()
+        }
+        refresh()//数据初始化
+    }
+    
+    // 定位
+    
+    func myLocationManager(){
+        
+        manager = CLLocationManager()
+        manager!.delegate=self
+        manager!.desiredAccuracy = kCLLocationAccuracyBest
+        manager!.distanceFilter = 1000.0
+        
+        //        if #available(iOS 8.0, *) {
+        //           manager!.requestAlwaysAuthorization()
+        //        }
+        manager!.requestAlwaysAuthorization()
+        
+        // ios9 允许设备后台定位（ios9后新特性，同一个设备，允许多个loaction manager,一些只能再前台定位，一些可以在后台定位）
+        //        if #available(iOS 9.0, *) {
+        //            manager?.allowsBackgroundLocationUpdates = true
+        //        }
+        
+        if CLLocationManager.locationServicesEnabled() { // 系统定位服务是否开启
+            manager!.startUpdatingLocation()
+        }else{
+            
+            self.noticeError("定位服务未打开，请修改手机设置(设置->浩优服务家->位置->始终)", autoClear: true, autoClearTime: 3)
+        }
+        
+        
+    }
+    
+    
+    // 推送消息跳转
+    
+    func pushOrederGY()  {
+        navigationController?.popToRootViewControllerAnimated(true)
+        //        manager = CLLocationManager()
+        //        manager!.delegate=self
+        //        manager!.desiredAccuracy = kCLLocationAccuracyBest
+        //        manager!.distanceFilter = 10.0
+        //        manager!.requestAlwaysAuthorization()
+        //        manager!.startUpdatingLocation()
+        //直接调用此方法会导致连续push多次
+        //        let robOneCon = RobListMianViewController(addressDic: addressDic)
+        //        if    self.addressQconCityIsNull() == false
+        //        {
+        //            return
+        //        }
+        //        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        //        counttime=NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(HomeTableViewController.addressQconCityIsNull), userInfo: nil, repeats: true)
+//        myLocationManager()
+        
+        qiangdanAction()
+    }
+    
+    
+    //
+    
+    func CurrentUserDidChange() {
+        self.tableView.reloadData()
+    }
+    
+    // 刷新
+    
+    func refresh() {
+        let success: (User) -> Void = {
+            [weak self] user in
+            if let self_ = self {
+                User.currentUser=user
+                self_.tableView.reloadData()
+                self_.tableView.pullToRefreshView.stopAnimating()
+                self_.headImgView.image=UIImage(named: self_.tmpWhitchImg ? "home_top_2":"home_top_1")
+                self_.tmpWhitchImg = !self_.tmpWhitchImg
+            }
+        }
+        let failure: (NSError) -> Void = {
+            [weak self] error in
+            if let self_ = self {
+                self_.tableView.pullToRefreshView.stopAnimating()
+            }
+        }
+        User.RefreshIndex(success, failure: failure)
+        
+    }
+    
+    /**
+     点击菜单的哪个按钮
+     
+     - parameter Tag: 从左到右，从上到下，1、2....8
+     */
+    private func buttonClick(Tag:Int)
+    {
+        
+        print(Tag)
+        switch Tag {
+        case 1:
+            
+            //            if    self.addressQconCityIsNull() == false
+            //            {
+            //                break
+            //            }
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            qiangdanAction()
+            
+            break
+        case 2:
+            
+            
+            self.nextTitle = "待处理"
+            
+            self.action = "yqaction"
+            self.pushToNextCon()
+            
+            //
+            //              self.nextTitle = "待处理"
+            //       if       self.addressCityIsNill() == false
+            //       {
+            //        break
+            //              }
+            //               MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            //              counttime=NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(HomeTableViewController.addressCityIsNill), userInfo: nil, repeats: true)
+            
+            
+            break
+        case 3:
+            let viewCon =  ViewController()
+            viewCon.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewCon, animated: true)
+            
+            break
+        case 4:
+            
+            let viewCon =  ViewController()
+            viewCon.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewCon, animated: true)
+            //            self.nextTitle = "待评价"
+            //            self.action = "waitscoreaction"
+            //            self.pushToNextCon()
+            break
+        case 5:
+            
+            self.nextTitle = "待评价"
+            self.action = "waitscoreaction"
+            self.pushToNextCon()
+            break
+        case 6:
+            self.nextTitle = "待结算"
+            self.action = "wsettlementaction"
+            self.pushToNextCon()
+            
+            break
+        case  7:
+            self.nextTitle = "已评价"
+            self.action = "scoreaction"
+            self.pushToNextCon()
+            break
+        case  8:
+            
+            self.nextTitle = "已结算"
+            self.action = "hsettlementaction"
+            pushToNextCon()
+            //            let  myteam = MyTeamTableViewController()
+            //           // myteam.hidesBottomBarWhenPushed = true
+            //             self.navigationController?.pushViewController(myteam, animated: true)
+            
+            break
+            
+        default:
+            break
+            
+        }
+        
+    }
+    
+    func pushToNextCon( ){
+        
+        //        self.nextTitle = "待处理"
+        //
+        //        self.action = "kqaction"
+        //        if       self.addressCityIsNill() == false
+        //        {
+        //            return
+        //        }
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        commonSkipAction()
+        //        counttime=NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(HomeTableViewController.addressCityIsNill), userInfo: nil, repeats: true)
+    }
+    
+    
+    //    //除了抢单，其他各种单页面都一样
+    //    func addressCityIsNill()->Bool{
+    //        repeatTime += 1
+    //
+    //        if repeatTime > 3 {
+    //            MBProgressHUD.hideHUDForView(self.view, animated: true)
+    //            counttime.invalidate()
+    //            self.noticeError("位置信息获取失败，请修改手机设置(设置->浩优服务家->位置->始终)", autoClear: true, autoClearTime: 4)
+    //            repeatTime = 0
+    //        }
+    //        if self.addressDic.objectForKey("city") != nil{
+    //            MBProgressHUD.hideHUDForView(self.view, animated: true)
+    //
+    //            let pendingDoing = RobListOneController(title: nextTitle, orderBytime: self.addressDic,action: self.action)
+    //            pendingDoing.hidesBottomBarWhenPushed = true
+    //
+    //
+    //            self.navigationController?.pushViewController(pendingDoing, animated: true)
+    //
+    //            if self.counttime != nil {
+    //                self.counttime.invalidate()
+    //            }
+    //            repeatTime = 0
+    //            return false
+    //        }
+    //        return true
+    //
+    //    }
+    
+    //    //抢单判断传入的地理信息是否成功
+    //    func addressQconCityIsNull() ->Bool{
+    //        repeatTime += 1
+    //        if repeatTime > 3 {
+    //            MBProgressHUD.hideHUDForView(self.view, animated: true)
+    //            counttime.invalidate()
+    //
+    //            self.noticeError("位置信息获取失败，请修改手机设置(设置->浩优服务家->位置->始终)", autoClear: true, autoClearTime: 4)
+    //            repeatTime = 0
+    //        }
+    //
+    //        if self.addressDic.objectForKey("city") != nil{
+    //            MBProgressHUD.hideHUDForView(self.view, animated: true)
+    //            self.addressDic.setValue("kqaction", forKey: "action")
+    //            let robOneCon = RobListMianViewController(addressDic: self.addressDic)
+    //
+    //            robOneCon.hidesBottomBarWhenPushed = true
+    //
+    //            self.navigationController?.pushViewController(robOneCon, animated: true)
+    //            if self.counttime != nil {
+    //                self.counttime.invalidate()
+    //            }
+    //            repeatTime = 0
+    //            return false
+    //
+    //        }
+    //
+    //        return true
+    //    }
+    
+    
+    // 抢单跳转
+    
+    func qiangdanAction(){
+        
+        if CLLocationManager.locationServicesEnabled() { // 系统定位服务是否开启
+            
+            if (CLLocationManager.authorizationStatus().rawValue == 0) || (CLLocationManager.authorizationStatus().rawValue == 3) {
+                //  if isLocationSuccess { // 是否定位成功
+                
+                
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                
+                getAddressFromUserDefault()
+                
+                self.addressDic.setValue("kqaction", forKey: "action")
+                let robOneCon = RobListMianViewController(addressDic: self.addressDic)
+                
+                robOneCon.hidesBottomBarWhenPushed = true
+                
+                self.navigationController?.pushViewController(robOneCon, animated: true)
+                
+                //                }else{
+                //
+                //                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                //
+                //                    let alertView=SCLAlertView()
+                //                    alertView.addButton("ok", action: {})
+                //                    alertView.showError("错误提示", subTitle: "定位失败，请稍后")
+                //                }
+                
+            }else{
+                
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                self.noticeError("服务家定位服务未打开，请修改手机设置(设置->浩优服务家->位置->始终)", autoClear: true, autoClearTime: 3)
+            }
+        }else{
+            
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            self.noticeError("系统定位服务未打开", autoClear: true, autoClearTime: 3)
+        }
+    }
+    
+    // 待处理-待评价-待结算-已评价-已结算跳转
+    func commonSkipAction(){ // 暂时
+        
+        if CLLocationManager.locationServicesEnabled() { // 系统定位服务是否开启
+            
+            if (CLLocationManager.authorizationStatus().rawValue == 0) || (CLLocationManager.authorizationStatus().rawValue == 3) {
+                //  if isLocationSuccess { // 是否定位成功
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                
+                getAddressFromUserDefault()
+                
+                let pendingDoing = RobListOneController(title: nextTitle, orderBytime: self.addressDic,action: self.action)
+                pendingDoing.hidesBottomBarWhenPushed = true
+                
+                self.navigationController?.pushViewController(pendingDoing, animated: true)
+                
+                //                }else{
+                //
+                //                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                //
+                //                    let alertView=SCLAlertView()
+                //                    alertView.addButton("ok", action: {})
+                //                    alertView.showError("错误提示", subTitle: "定位失败，稍等一会儿")
+                //                }
+                
+            }else{
+                
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                
+                self.noticeError("服务家定位服务未打开，请修改手机设置(设置->浩优服务家->位置->始终)", autoClear: true, autoClearTime: 3)
+            }
+        }else{
+            
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            
+            self.noticeError("系统定位服务未打开", autoClear: true, autoClearTime: 3)
+        }
+        
+    }
+}
+
+
+// MARK: - private methods
+
+extension HomeTableViewController{
+    
+    // 从本地获取数据
+    func getAddressFromUserDefault(){
+        
+        self.addressDic.setValue(5, forKey: "pagesize")
+        
+        self.addressDic.setValue(1, forKey: "pageindex")
+        
+        if let province = NSUserDefaults.standardUserDefaults().objectForKey(PROVINCE) {
+            
+            self.addressDic.setValue((province as! String), forKey: "Province")
+        }else{
+            self.addressDic.setValue("上海", forKey: "Province")
+        }
+        if let city = NSUserDefaults.standardUserDefaults().objectForKey(CITY) {
+            
+            self.addressDic.setValue((city as! String), forKey: "city")
+        }else{
+            self.addressDic.setValue("上海", forKey: "city")
+        }
+        
+        if let latitude = NSUserDefaults.standardUserDefaults().objectForKey(LATITUDE){
+            
+            self.addressDic.setValue((latitude as! Double), forKey: "lat")
+        }else{
+            self.addressDic.setValue(0.000, forKey: "lat")
+        }
+        
+        if let longitude = NSUserDefaults.standardUserDefaults().objectForKey(LONGITUDE){
+            
+            self.addressDic.setValue((longitude as! Double), forKey: "lng")
+        }else{
+            self.addressDic.setValue(0.000, forKey: "lng")
+        }
+        
+        
+    }
+}
+
+// MARK: - event response
+
+extension HomeTableViewController{
+    
+    
+}
+
+// MARK: - delegates
+
+extension HomeTableViewController: CLLocationManagerDelegate{
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let newLocation = locations[0]
+        let o2d = newLocation.coordinate
+        //CLLocationCoordinate2D
+        //        let loca = 31.4217987560
+        //        let logn = 116.7258979197
+        //        let  location = CLLocation.init(latitude: loca, longitude: logn)
+        
+        //let o2d = newLocation.coordinate
+        // manager.stopUpdatingLocation() // 停止定位后，当位置发生移动，didUpdateLocations这个代理再调用
+        
+        let  geoC = CLGeocoder()
+        
+        geoC.reverseGeocodeLocation(newLocation) { (placemarks, error) in
+            if(error == nil)
+            {
+                
+                let placemark=placemarks?.first
+                
+                guard (placemark != nil) else {
+                    
+                    self.isLocationSuccess = false
+                    return
+                }
+                
+                // addressDic?.setValue(<#T##value: AnyObject?##AnyObject?#>, forKey: <#T##String#>)
+                //                print("===========\n");
+                //                print("成功 %@",placemark?.classForCoder);
+                //                print("地理名称%@",placemark!.name);
+                //                print("街道名%@",placemark!.thoroughfare);
+                //                print("国家%@",placemark!.country);
+                //                print("城市%@",placemark!.locality);
+                //
+                //                print("区: %@",placemark!.subLocality);
+                //
+                //                print("==========\n");
+                //
+                //初始化关于地理位置的block
+                //  self.initBlock()
+                //                let newAddressDic = NSMutableDictionary()
+                //                newAddressDic.setValue(5, forKey: "pagesize")
+                //                newAddressDic.setValue(1, forKey: "pageindex")
+                //                newAddressDic.setValue((placemark!.administrativeArea! as String), forKey: "Province")
+                //                newAddressDic.setValue((placemark!.locality! as String), forKey: "city")
+                //                newAddressDic.setValue((o2d.latitude as NSNumber).doubleValue, forKey: "lat")
+                //                newAddressDic.setValue((o2d.longitude as NSNumber).doubleValue, forKey: "lng")
+                //
+                //                NSUserDefaults.standardUserDefaults().setValue(newAddressDic, forKey: "UserLocation") // 保存用户位置到本地
+                
+                // 保存位置信息在本地
+                if placemark!.administrativeArea != nil {
+                    
+                    NSUserDefaults.standardUserDefaults().setValue((placemark!.administrativeArea! as String), forKey: PROVINCE)
+                }else{
+                    
+                    NSUserDefaults.standardUserDefaults().setValue("上海", forKey: PROVINCE)
+                }
+                
+                if placemark!.locality != nil{
+                    
+                    NSUserDefaults.standardUserDefaults().setValue((placemark!.locality! as String), forKey: CITY)
+                }else{
+                    
+                    NSUserDefaults.standardUserDefaults().setValue("上海", forKey: CITY)
+                }
+                
+                NSUserDefaults.standardUserDefaults().setValue((o2d.latitude as NSNumber).doubleValue, forKey: LATITUDE)
+                NSUserDefaults.standardUserDefaults().setValue((o2d.longitude as NSNumber).doubleValue, forKey: LONGITUDE)
+                
+                if appDelegate.mainViewController != nil {
+                    User.currentUser?.lat=NSNumber(double: o2d.latitude)
+                    User.currentUser?.lng=NSNumber(double: o2d.longitude)
+                    
+                }else{
+                    print("进不来");
+                }
+                
+                self.isLocationSuccess = true
+                
+                //             self.addressDic.setValue(placemark?.subLocality, forKey: "Country")
+                //self.addressDicBlock!(o2d,placemark!)
+                
+            }else
+            {
+                print("错误");
+            }
+        }
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) { // 定位失败调用的代理方法
+        
+        isLocationSuccess = false
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus){
+        
+        if status.rawValue == 0 || status.rawValue == 3 {
+            // isLocationSuccess = true
+            
+            manager.startUpdatingLocation()
+        }
+    }
+    
+}
+
+extension HomeTableViewController:UITableViewDelegate,UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return HEIGHT_SCREEN-HEIGHT_TabBar-228*HEIGHT_SCREEN/667
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell", forIndexPath: indexPath) as! HomeTableViewCell
+        cell.selectionStyle=UITableViewCellSelectionStyle.None
+        cell.buttonClickCallBack={ [weak self] buttonTag in
+            if let strongSelf = self {
+                strongSelf.buttonClick(buttonTag)
+            }
+            
+        }
+        
+        do{
+            if User.currentUser?.orderabout != nil {
+                let tmpOrderDic = try? NSJSONSerialization.JSONObjectWithData((User.currentUser?.orderabout)!, options: NSJSONReadingOptions.MutableContainers)
+                let finshOfOrder:String = ((tmpOrderDic?.objectForKey("finsh") ?? 0) as! NSNumber).stringValue
+                let waitOfOrder:String = ((tmpOrderDic?.objectForKey("wait") ?? 0) as! NSNumber).stringValue
+                cell.orderAboutLabel.text = "已完成\(finshOfOrder)单     待处理\(waitOfOrder)单"
+                
+                cell.unDealLabel.hidden = false
+                
+                let waitCount = Int(waitOfOrder)
+                if let count = waitCount {
+                    if count > 99 {
+                        cell.unDealLabel.text = "99+"
+                    }else if count <= 0{
+                        cell.unDealLabel.hidden = true
+                    }else{
+                        cell.unDealLabel.text = waitOfOrder
+                    }
+                }else{
+                    cell.unDealLabel.text = waitOfOrder
+                }
+                
+                cell.unDealLabel.layer.cornerRadius = 9.0
+                cell.unDealLabel.layer.masksToBounds = true
+            }
+            
+        }
+        
+        if User.currentUser?.score != nil {
+            
+            cell.scoreOfStar = (User.currentUser?.score)!=="" ? 0:Int((User.currentUser?.score)!)!
+        }
+        
+        
+        cell.nameLabel.text = User.currentUser!.name
+        if User.currentUser?.headimageurl != nil
+        {
+            cell.personImg.image=UIImage(data: (User.currentUser?.headimageurl)!)
+        }
+        cell.imageArray=[UIImage(named: "banner1"),UIImage(named: "banner2"),UIImage(named: "banner3")]
+        return cell
+    }
+    
+}
+

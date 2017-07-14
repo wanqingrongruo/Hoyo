@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RNFeeTypeView02" customModule="HoyoServicer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="vKc-i3-le3" userLabel="backView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="订单额外费用" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkw-AM-CZR">
+                            <rect key="frame" x="40" y="5" width="84" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="85" id="GWR-aY-F8H"/>
+                                <constraint firstAttribute="height" constant="20" id="eDj-uz-TAz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsFontSizeToFitWidth" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="eDj-uz-TAz"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未知" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THo-If-ezq">
+                            <rect key="frame" x="510" y="5" width="50" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="tzC-Je-xHK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goD-L7-xIv">
+                            <rect key="frame" x="125" y="5" width="385" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="THo-If-ezq" firstAttribute="leading" secondItem="goD-L7-xIv" secondAttribute="trailing" id="7hM-kQ-KW6"/>
+                        <constraint firstItem="goD-L7-xIv" firstAttribute="height" secondItem="lkw-AM-CZR" secondAttribute="height" id="7rh-Um-FC8"/>
+                        <constraint firstItem="lkw-AM-CZR" firstAttribute="top" secondItem="vKc-i3-le3" secondAttribute="top" constant="5" id="9Z9-J3-zqv"/>
+                        <constraint firstAttribute="trailing" secondItem="THo-If-ezq" secondAttribute="trailing" constant="40" id="Dmd-wb-eCh"/>
+                        <constraint firstItem="lkw-AM-CZR" firstAttribute="leading" secondItem="vKc-i3-le3" secondAttribute="leading" constant="40" id="Jui-6k-a3L"/>
+                        <constraint firstItem="THo-If-ezq" firstAttribute="height" secondItem="lkw-AM-CZR" secondAttribute="height" id="SSQ-tQ-WI7"/>
+                        <constraint firstItem="THo-If-ezq" firstAttribute="centerY" secondItem="lkw-AM-CZR" secondAttribute="centerY" id="YZg-Nl-7GZ"/>
+                        <constraint firstItem="goD-L7-xIv" firstAttribute="leading" secondItem="lkw-AM-CZR" secondAttribute="trailing" id="ZEp-uc-boT"/>
+                        <constraint firstAttribute="bottom" secondItem="lkw-AM-CZR" secondAttribute="bottom" constant="5" id="dye-za-ly6"/>
+                        <constraint firstItem="goD-L7-xIv" firstAttribute="centerY" secondItem="lkw-AM-CZR" secondAttribute="centerY" id="tOI-VB-G8t"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vKc-i3-le3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="788-iE-BlU"/>
+                <constraint firstItem="vKc-i3-le3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KbY-3t-ROO"/>
+                <constraint firstAttribute="trailing" secondItem="vKc-i3-le3" secondAttribute="trailing" id="eta-vE-Adi"/>
+                <constraint firstAttribute="bottom" secondItem="vKc-i3-le3" secondAttribute="bottom" id="lhd-n6-lVF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="payStatusLabel" destination="THo-If-ezq" id="o6k-s2-nxL"/>
+                <outlet property="priceLabel" destination="goD-L7-xIv" id="1Jr-9Z-bW3"/>
+                <outlet property="typeLabel" destination="lkw-AM-CZR" id="aPs-3I-M2J"/>
+            </connections>
+            <point key="canvasLocation" x="655" y="50"/>
+        </view>
+    </objects>
+</document>

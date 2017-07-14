@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RNRepairWaterValueCell" customModule="HoyoServicer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aR-0p-CKe" userLabel="backView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="IgN-Dl-edA" userLabel="waterValueView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="水值修复" textAlignment="natural" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9p-ls-bS1" userLabel="areaLabel">
+                                        <rect key="frame" x="20" y="8" width="57.5" height="27.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="m7R-AL-dig"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scf-01-SkQ">
+                                        <rect key="frame" x="225" y="10" width="80" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Aqa-mV-0rg"/>
+                                            <constraint firstAttribute="height" constant="24" id="HNh-TW-kMz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-45" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="配对机器" image="rightIcon">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pairAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xCH-6h-ckl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Scf-01-SkQ" secondAttribute="trailing" constant="15" id="XLO-iK-5Ly"/>
+                                    <constraint firstItem="A9p-ls-bS1" firstAttribute="leading" secondItem="IgN-Dl-edA" secondAttribute="leading" constant="20" id="dUR-Wm-Ycg"/>
+                                    <constraint firstItem="A9p-ls-bS1" firstAttribute="top" secondItem="IgN-Dl-edA" secondAttribute="top" constant="8" id="iCN-9A-Wkr"/>
+                                    <constraint firstAttribute="bottom" secondItem="A9p-ls-bS1" secondAttribute="bottom" constant="8" id="s7J-KH-q1H"/>
+                                    <constraint firstItem="Scf-01-SkQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A9p-ls-bS1" secondAttribute="trailing" constant="10" id="ugU-9s-hIQ"/>
+                                    <constraint firstItem="Scf-01-SkQ" firstAttribute="centerY" secondItem="A9p-ls-bS1" secondAttribute="centerY" id="xnr-QC-f3n"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="IgN-Dl-edA" secondAttribute="bottom" id="GX9-rP-9r3"/>
+                            <constraint firstItem="IgN-Dl-edA" firstAttribute="leading" secondItem="6aR-0p-CKe" secondAttribute="leading" id="SQv-zn-LuN"/>
+                            <constraint firstAttribute="trailing" secondItem="IgN-Dl-edA" secondAttribute="trailing" id="ZC9-yn-9Qx"/>
+                            <constraint firstItem="IgN-Dl-edA" firstAttribute="top" secondItem="6aR-0p-CKe" secondAttribute="top" id="l3C-rZ-PdB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6aR-0p-CKe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="3p2-7G-HMc"/>
+                    <constraint firstAttribute="bottom" secondItem="6aR-0p-CKe" secondAttribute="bottom" id="3tJ-Fg-inh"/>
+                    <constraint firstItem="6aR-0p-CKe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5Zu-hK-ulc"/>
+                    <constraint firstAttribute="trailing" secondItem="6aR-0p-CKe" secondAttribute="trailing" id="Fex-V9-jVP"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="rightIcon" width="24" height="24"/>
+    </resources>
+</document>

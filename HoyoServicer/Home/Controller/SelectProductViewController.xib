@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectProductViewController" customModule="HoyoServicer" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="41Z-wd-u96" id="hz9-uA-GZa"/>
+                <outlet property="layout" destination="acP-Cs-cb1" id="YQb-w7-Olu"/>
+                <outlet property="searchBar" destination="Gv8-js-CpL" id="WSM-VR-87l"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Gv8-js-CpL">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="NUt-sP-HHe"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="41Z-wd-u96">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="acP-Cs-cb1">
+                        <size key="itemSize" width="0.0" height="0.0"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="41Z-wd-u96" secondAttribute="bottom" id="LC3-GF-Ak2"/>
+                <constraint firstItem="Gv8-js-CpL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RIS-Rh-pLY"/>
+                <constraint firstItem="41Z-wd-u96" firstAttribute="top" secondItem="Gv8-js-CpL" secondAttribute="bottom" id="VNq-t9-e3H"/>
+                <constraint firstItem="Gv8-js-CpL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vvo-Hk-MlR"/>
+                <constraint firstAttribute="trailing" secondItem="41Z-wd-u96" secondAttribute="trailing" id="Wnr-Of-xor"/>
+                <constraint firstAttribute="trailing" secondItem="Gv8-js-CpL" secondAttribute="trailing" id="aUt-No-75A"/>
+                <constraint firstItem="41Z-wd-u96" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mrQ-FV-H8H"/>
+            </constraints>
+            <point key="canvasLocation" x="333.5" y="171.5"/>
+        </view>
+    </objects>
+</document>

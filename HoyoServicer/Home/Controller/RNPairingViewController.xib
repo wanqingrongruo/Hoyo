@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RNPairingViewController" customModule="HoyoServicer" customModuleProvider="target">
+            <connections>
+                <outlet property="animalImg" destination="gGT-aC-cy2" id="87q-cv-uHd"/>
+                <outlet property="view" destination="jx9-hO-3jC" id="DbG-UN-6o5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jx9-hO-3jC">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="waterPair" translatesAutoresizingMaskIntoConstraints="NO" id="WSH-8b-aEh">
+                    <rect key="frame" x="145.5" y="162" width="84" height="92"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_circle_watting" translatesAutoresizingMaskIntoConstraints="NO" id="gGT-aC-cy2">
+                    <rect key="frame" x="123" y="143.5" width="129" height="130"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFs-bA-Zic">
+                    <rect key="frame" x="187.5" y="298.5" width="0.0" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="oCc-Y1-OVf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在进行蓝牙配对..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="un5-eF-sv5">
+                    <rect key="frame" x="124.5" y="326.5" width="126.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.50128602980000003" green="0.81346648929999998" blue="0.97630530599999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qFs-bA-Zic" firstAttribute="centerX" secondItem="jx9-hO-3jC" secondAttribute="centerX" id="6jX-GU-dGT"/>
+                <constraint firstItem="un5-eF-sv5" firstAttribute="centerX" secondItem="jx9-hO-3jC" secondAttribute="centerX" id="8F0-G3-pe6"/>
+                <constraint firstAttribute="bottom" secondItem="WSH-8b-aEh" secondAttribute="bottom" multiplier="667:254" id="GeO-6b-3vI"/>
+                <constraint firstItem="WSH-8b-aEh" firstAttribute="centerX" secondItem="jx9-hO-3jC" secondAttribute="centerX" id="Moi-VO-dWz"/>
+                <constraint firstItem="gGT-aC-cy2" firstAttribute="centerY" secondItem="WSH-8b-aEh" secondAttribute="centerY" id="VeZ-nQ-PRP"/>
+                <constraint firstItem="gGT-aC-cy2" firstAttribute="centerX" secondItem="WSH-8b-aEh" secondAttribute="centerX" id="WhG-Of-bsJ"/>
+                <constraint firstItem="un5-eF-sv5" firstAttribute="top" secondItem="qFs-bA-Zic" secondAttribute="bottom" constant="8" id="be6-3v-Ujt"/>
+                <constraint firstItem="qFs-bA-Zic" firstAttribute="top" secondItem="gGT-aC-cy2" secondAttribute="bottom" constant="25" id="pfF-po-PS5"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_circle_watting" width="129" height="130"/>
+        <image name="waterPair" width="84" height="92"/>
+    </resources>
+</document>

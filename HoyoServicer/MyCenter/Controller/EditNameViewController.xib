@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditNameViewController" customModule="HoyoServicer" customModuleProvider="target">
+            <connections>
+                <outlet property="editName" destination="ZSJ-XI-XMh" id="Bk8-hJ-yjm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H06-hk-KwK">
+                    <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dfd" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZSJ-XI-XMh">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="fn1-bx-0Rc"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ZSJ-XI-XMh" firstAttribute="top" secondItem="H06-hk-KwK" secondAttribute="top" id="9BO-3Z-hht"/>
+                        <constraint firstItem="ZSJ-XI-XMh" firstAttribute="leading" secondItem="H06-hk-KwK" secondAttribute="leading" id="DiK-uY-lnm"/>
+                        <constraint firstAttribute="trailing" secondItem="ZSJ-XI-XMh" secondAttribute="trailing" id="Sjl-FL-ofe"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="H06-hk-KwK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7EX-wR-Brm"/>
+                <constraint firstAttribute="trailing" secondItem="H06-hk-KwK" secondAttribute="trailing" id="84e-Bv-ojC"/>
+                <constraint firstItem="H06-hk-KwK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="EJT-95-g2d"/>
+                <constraint firstAttribute="bottom" secondItem="H06-hk-KwK" secondAttribute="bottom" id="bGn-Xp-eJi"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

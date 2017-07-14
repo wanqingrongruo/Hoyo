@@ -1,0 +1,613 @@
+//
+//  AppDelegate.swift
+//  HoyoServicer
+//
+//  Created by 赵兵 on 16/3/28.
+//  Copyright © 2016年 com.ozner.net. All rights reserved.
+//
+
+import UIKit
+import CoreData
+import Reachability
+import SwiftyJSON
+
+// 当前支付状态的枚举
+enum CURRENT_PAY_TYPE : Int{
+   case NONE = 0 // 未支付
+   case ALIPAY = 1 // 支付宝支付
+   case WEIXIN = 2 // 微信支付
+}
+
+var Current_pay_type :CURRENT_PAY_TYPE = .NONE // 默认未选择支付方式
+var isSuccessWithPayType = false // 选择了支付方式后是否支付成功
+
+
+enum PushType {
+    /// 普通
+    case String
+    /// 积分
+    case Score
+    /// 指派订单
+    case Ordernotify
+    /// 可抢订单
+    case Orderrob
+}
+
+var appDelegate: AppDelegate {
+    return UIApplication.sharedApplication().delegate as! AppDelegate
+}
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate{
+    
+    var window: UIWindow? = { 
+        let v = UIWindow(frame: UIScreen.mainScreen().bounds)
+        return v
+    }()
+    
+    
+    
+    lazy var loginViewController: LoginAndRegisterViewController = {
+        
+        return    LoginAndRegisterViewController.init(nibName: "LoginAndRegisterViewController", bundle: nil)
+    }()
+    /// 网络状态
+    var reachOfNetwork:Reachability?
+    //主视图控制器
+    var mainViewController: MainViewController!
+    
+    var pushType: PushType?
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Bugly.startWithAppId("900029559")
+        
+        //检查网络状况，无网络，wifi，普通网络三种情况实时变化通知
+        reachOfNetwork = Reachability(hostName: "www.baidu.com")
+        reachOfNetwork!.startNotifier()
+        
+        //网络变化通知，在需要知道的地方加上此通知即可
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged), name: kReachabilityChangedNotification, object: nil)
+        
+        
+        
+        //提醒用户给app打分//
+        //        Appirater.setAppId("955305764")
+        //        Appirater.setDaysUntilPrompt(1)
+        //        Appirater.setUsesUntilPrompt(1)
+        //        Appirater.setSignificantEventsUntilPrompt(-1)
+        //        Appirater.setTimeBeforeReminding(2)
+        //        Appirater.setDebug(true)
+        //        Appirater.appLaunched(true)
+        
+        //设置状态栏字体为白色
+        UIApplication.sharedApplication().statusBarStyle=UIStatusBarStyle.LightContent
+        
+        //标记是否第一次登陆
+        let isFristOpen = NSUserDefaults.standardUserDefaults().objectForKey("isFristOpenApp")
+        
+        if isFristOpen == nil {
+            let guideVC = RNGuideViewController()
+            
+            guideVC.skipClosure = { [weak self]() -> Void in
+                
+                UIView.animateWithDuration(1.2, animations: {
+                    
+                    let newTransform = CGAffineTransformMakeScale(1.1, 1.1)
+                    guideVC.view.transform = newTransform
+                    
+                    }, completion: { (finished) in
+                        self!.window!.rootViewController = self!.loginViewController
+                        
+                })
+                
+            }
+            window?.rootViewController = guideVC
+            NSUserDefaults.standardUserDefaults().setObject("isFristOpenApp", forKey: "isFristOpenApp")
+        } else {
+            
+            User.loginWithLocalUserInfo(
+                success: {
+                    [weak self] user in
+                    User.currentUser = user
+                    
+                    self?.window?.rootViewController = MainViewController()
+                },
+                failure: {[weak self] (error) in
+                    
+                    self?.window!.rootViewController = self?.loginViewController
+                    
+                })
+        }
+        //window!.rootViewController = loginViewController
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, __int64_t(5 * NSEC_PER_SEC))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            
+            weak var weakSelf = self                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+            NetworkManager.defaultManager!.POST("AppLogin",
+                                                parameters: [
+                                                    "phone": "15026981614",
+                                                    "password": "123456"
+                ],
+                                                success: {
+                                                    data in
+                                                    weakSelf?.CheckVerion()
+                },
+                                                failure: nil)
+        }
+        
+        
+        
+        
+        window!.makeKeyAndVisible()
+        
+        
+        //Required 判断当前设备版本
+        if Float(UIDevice.currentDevice().systemVersion) >= 8.0 {
+            
+            let type:UInt = UIUserNotificationType.Alert.rawValue | UIUserNotificationType.Sound.rawValue | UIUserNotificationType.Badge.rawValue
+            
+            JPUSHService.registerForRemoteNotificationTypes(type, categories: nil)
+            
+        } else {
+            let type:UInt = UIUserNotificationType.Alert.rawValue | UIUserNotificationType.Sound.rawValue | UIUserNotificationType.Badge.rawValue | UIUserNotificationType.Sound.rawValue
+            
+            JPUSHService.registerForRemoteNotificationTypes(type, categories: nil)
+        }
+        //注册极光
+        JPUSHService.setupWithOption(launchOptions, appKey: "78f40fd899d1598548afa084", channel: nil, apsForProduction: true)
+        
+        if (launchOptions != nil) {
+            let remoteNotification = launchOptions![UIApplicationLaunchOptionsRemoteNotificationKey];
+            NSUserDefaults.standardUserDefaults().setValue("HomeOrderNotification", forKey: OrderPushNotification)
+            
+            //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
+            if (remoteNotification != nil) {
+                
+            }
+        }
+        
+        //关闭连接
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.JPushDidClose(_:)), name: kJPFNetworkDidCloseNotification, object: nil)
+        
+        //注册成功
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.JPushDidRegister(_:)), name: kJPFNetworkDidRegisterNotification, object: nil)
+        
+        //登陆成功
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.JPushDidLogin(_:)), name: kJPFNetworkDidLoginNotification, object: nil)
+        
+        //收到自定义消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.JPushDidReceiveMessage(_:)), name: kJPFNetworkDidReceiveMessageNotification, object: nil)
+        
+        
+        // 微信支付注册
+        WXApi.registerApp("wx1baa87b7f1b6fad1", withDescription: "浩优支付")
+        
+        return true
+    }
+    
+    /**
+     登出处理
+     */
+    func LoginOut()
+    {
+        
+        if appDelegate.mainViewController != nil{
+            
+            appDelegate.mainViewController.dismissViewControllerAnimated(true, completion: nil)
+            appDelegate.mainViewController = nil
+        }
+        
+        //清理用户文件
+        
+        NetworkManager.clearCookies()
+        DataManager.defaultManager = nil
+        window?.rootViewController = loginViewController
+        //退出登录删除本地用户名和密码
+        //        NSUserDefaults.standardUserDefaults().removeObjectForKey("UserName")
+        //        NSUserDefaults.standardUserDefaults().removeObjectForKey("PassWord")
+        
+    }
+    //接收到网络变化后处理事件
+    func reachabilityChanged(notification:NSNotification){
+        let reach = notification.object
+        print(reachOfNetwork?.currentReachabilityString())
+        if ((reach?.isKindOfClass(Reachability.classForCoder())) != false){
+            
+            let status:NetworkStatus = (reach?.currentReachabilityStatus())! //currentReachabilityStatus];
+            
+            switch status
+            {
+            case .NotReachable:
+                print("网络不可用")
+                break
+            case .ReachableViaWiFi:
+                print("WIFI已连接")
+                break
+            case .ReachableViaWWAN:
+                print("普通网络已连接")
+                break
+                
+            }
+            
+            
+        }
+        
+    }
+    
+    // 应用间跳转回调
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        
+//       // isSuccessWithPayType = true
+//        Current_pay_type = .NONE
+        return WXApi.handleOpenURL(url, delegate: self)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        
+//       // isSuccessWithPayType = true
+//        Current_pay_type = .NONE
+        return WXApi.handleOpenURL(url, delegate: self)
+    }
+    
+    
+    
+    func applicationWillResignActive(application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    }
+    
+    func applicationDidEnterBackground(application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        UIScreen.mainScreen()
+    }
+    
+    func applicationWillEnterForeground(application: UIApplication) {
+        application.applicationIconBadgeNumber = 0
+        JPUSHService.setBadge(0)
+        application.cancelAllLocalNotifications()
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface. 
+        application.applicationIconBadgeNumber = 0
+        JPUSHService.setBadge(0) 
+        application.cancelAllLocalNotifications()
+        
+//        /*************************************************************/
+//        // 处理支付时屏幕左上角的系统级返回按钮
+//        if Current_pay_type == CURRENT_PAY_TYPE.ALIPAY {
+//            //支付宝
+//            if isSuccessWithPayType {
+//                //
+//            }
+//          //  Current_pay_type = .NONE
+//        }else if Current_pay_type == CURRENT_PAY_TYPE.WEIXIN{
+//            
+//            // 发出微信支付失败通知
+//            if isSuccessWithPayType {
+//                // 发出微信支付成功通知
+//                NSNotificationCenter.defaultCenter().postNotificationName("WEIXINPAYSUCCESS", object: nil)
+//                
+//
+//            }else{
+//                
+//                 // 发出微信支付失败通知
+//                 NSNotificationCenter.defaultCenter().postNotificationName("WEIXINPAYFAIL", object: nil)
+//            }
+//            
+//           
+//        }
+//        
+//        Current_pay_type = .NONE
+//        isSuccessWithPayType = false
+    }
+    
+    func applicationWillTerminate(application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Saves changes in the application's managed object context before the application terminates.
+        if NSUserDefaults.standardUserDefaults().valueForKey(UserDefaultsUserIDKey) != nil {
+            DataManager.defaultManager.saveChanges()
+        }
+        
+    }
+    
+    
+    
+    
+    //MARK: - 极光通知方法
+    //注册推送消息
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        print("deviceToken:\(deviceToken)")
+        //        let registraID = JPUSHService.registrationID()
+        JPUSHService.registerDeviceToken(deviceToken)
+        print("注册设备成功")
+    }
+    
+    //推送消息成功后调用
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print("程序在前台zhu" + "\(userInfo)")
+        JPUSHService.handleRemoteNotification(userInfo)
+        
+    }
+    
+    //iOS 7.0方法
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        if application.applicationState == UIApplicationState.Active {
+            //            AudioServicesDisposeSystemSoundID(1007);
+            
+            if let pushGY = pushType {
+                switch pushGY {
+                case PushType.Orderrob:
+                    //建立的SystemSoundID对象
+                    var soundID:SystemSoundID = 0
+                    //获取声音地址
+                    let path = NSBundle.mainBundle().pathForResource("message", ofType: "wav")
+                    //地址转换
+                    let baseURL = NSURL(fileURLWithPath: path!)
+                    //赋值
+                    AudioServicesCreateSystemSoundID(baseURL, &soundID)
+                    //播放声音
+                    AudioServicesPlaySystemSound(soundID)
+                case PushType.String,PushType.Ordernotify,PushType.Score:
+                    //                    AudioServicesDisposeSystemSoundID(1007)
+                    AudioServicesPlaySystemSound(1007)
+                }
+            }
+            
+            completionHandler(UIBackgroundFetchResult.NewData)
+            
+        } else if application.applicationState == UIApplicationState.Background{
+            JPUSHService.handleRemoteNotification(userInfo)
+            completionHandler(UIBackgroundFetchResult.NewData)
+            //            print("程序在后台ZHU" + "\(userInfo)")
+            //            print(userInfo["aps"]!["alert"])
+            pushSoundAction()
+            
+        } else {
+            completionHandler(UIBackgroundFetchResult.NewData)
+            pushSoundAction()
+            
+        }
+    }
+    
+    func pushSoundAction() {
+        if let pushGY = pushType {
+            switch pushGY {
+            case PushType.Orderrob:
+                NSNotificationCenter.defaultCenter().postNotificationName(OrderPushNotification, object: nil,userInfo: nil)
+                
+            case PushType.String,PushType.Score:
+                NSNotificationCenter.defaultCenter().postNotificationName(OrderPushNotificationString, object: nil,userInfo: nil)
+            case PushType.Ordernotify:
+                print("指派订单")
+            }
+        } else {
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(OrderPushNotification, object: nil,userInfo: nil)
+            
+        }
+    }
+    
+    //注册推送失败
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Errorwd:\(error)")
+    }
+    
+    //MARK: - 极光推送监听
+    
+    func JPushDidSetup(noti:NSNotification)
+    {
+        print("建立连接")
+    }
+    
+    func JPushDidClose(noti:NSNotification)  {
+        print("关闭连接")
+    }
+    
+    func JPushDidRegister(noti:NSNotification)  {
+        print("注册成功")
+    }
+    func JPushDidLogin(noti:NSNotification)  {
+        //        print("登录成功")
+        //        print("🐷" + "registraID:\(JPUSHService.registrationID())")
+        //        print(User.currentUser?.usertoken)
+        //        User.BingJgNotifyId(JPUSHService.registrationID(), success: {
+        //            print("绑定极光通知成功")
+        //        }) { (error:NSError) in
+        //            print(error)
+        //        }
+    }
+    
+    //MARK: - 接受自定义消息和通知消息
+    func JPushDidReceiveMessage(noti:NSNotification)  {
+        
+        let tmp = noti.userInfo!["content"] as! String
+        print(tmp)
+        if  let data = tmp.dataUsingEncoding(NSUTF8StringEncoding) {
+            let dic = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject]
+            let userId = dic!!["SendUserid"]?.stringValue ?? ""
+            let strNum =  MessageModel.updateSource(userId, entityName: "") ?? "0"
+            
+            let model = MessageModel.cachedObjectWithID(dic!!["MsgId"] as! String)
+            model.sendUserid = dic!!["SendUserid"]?.stringValue ?? ""
+            model.msgId = dic!!["MsgId"] as? String ?? ""
+            
+            print(model.sendUserid)
+            model.recvUserid = dic!!["RecvUserid"]?.stringValue ?? ""
+            model.sendNickName = dic!!["SendNickName"] as? String ?? ""
+            model.messageType = dic!!["MessageType"] as? String ?? ""
+            model.sendImageUrl = dic!!["SendImageUrl"] as? String ?? ""
+            if model.messageType == "score" {
+                if model.sendImageUrl != "" {
+                    model.sendImageUrl =  model.sendImageUrl!
+                }
+            } else {
+                if model.sendImageUrl != "" {
+                    model.sendImageUrl = "http://wechat.hoyofuwu.com" +  model.sendImageUrl!
+                }
+            }
+            
+            if let typeGY = model.messageType {
+                
+                switch  typeGY {
+                case "string":
+                    pushType = PushType.String
+                case "score":
+                    pushType = PushType.Score
+                case "ordernotify":
+                    pushType = PushType.Ordernotify
+                case "orderrob":
+                    pushType = PushType.Orderrob
+                    
+                default:
+                    break
+                }
+            }
+            
+            model.messageCon = dic!!["MessageCon"] as? String ?? ""
+            model.createTime = dic!!["CreateTime"] as? String ?? ""
+            model.messageNum = String(Int(strNum)! + 1)
+            print(model.messageNum)
+            print(model)
+            
+            let scoreModel = ScoreMessageModel.cachedObjectWithID(dic!!["MsgId"] as! String)
+            scoreModel.msgId = dic!!["MsgId"] as? String ?? ""
+            scoreModel.sendUserid = dic!!["SendUserid"]?.stringValue ?? ""
+            scoreModel.recvUserid = dic!!["RecvUserid"]?.stringValue ?? ""
+            scoreModel.sendNickName = dic!!["SendNickName"] as? String ?? ""
+            scoreModel.sendImageUrl = dic!!["SendImageUrl"] as? String ?? ""
+            if scoreModel.sendImageUrl != "" {
+                scoreModel.sendImageUrl = "http://wechat.hoyofuwu.com" +  scoreModel.sendImageUrl!
+            }
+            scoreModel.messageCon = dic!!["MessageCon"] as? String ?? ""
+            scoreModel.messageType = dic!!["MessageType"] as? String ?? ""
+            scoreModel.createTime = dic!!["CreateTime"] as? String ?? ""
+            scoreModel.remark = dic!!["Remark"] as? String ?? ""
+            DataManager.defaultManager!.saveChanges()
+            print("进入了")
+            // 后台前台都进，会导致声音重复
+            //            AudioServicesPlaySystemSound(1007)
+            NSNotificationCenter.defaultCenter().postNotificationName(messageNotification, object: nil, userInfo: ["messageNum": "1"])
+            
+        }
+        
+    }
+    
+    //回调函数
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        print("回调了")
+    }
+    
+    
+    //版本更新
+    func CheckVerion() {
+        let storeString = "http://itunes.apple.com/lookup?id=1116961418"
+        let storeURL = NSURL(string: storeString)
+        let request = NSMutableURLRequest(URL: storeURL!)
+        request.HTTPMethod = "GET"
+        //        let queue = NSOperationQueue()
+        let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error1) in
+            do {
+                let appData =   try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    guard appData!["results"]![0] != nil else {
+                        return
+                    }
+                    
+                    let versionsInAppStore = appData!["results"]![0]["version"] as? String
+                    
+                    let version1 = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
+                    
+                    let describeStr = appData!["results"]![0]["releaseNotes"] as? String ?? ""
+                    
+                    if versionsInAppStore?.compare(version1!) == NSComparisonResult.OrderedAscending {
+                        print("已是最新")
+                    } else {
+                        let alertView = SCLAlertView()
+                        alertView.addButton("前往更新 ", action: {
+                            let url = "https://itunes.apple.com/cn/app/fm-lu-xing-jie-ban-lu-xing/id1116961418?mt=8";
+                            UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+                            
+                        })
+                        alertView.addButton("取消", action: {})
+                        
+                        alertView.showInfo("发现新版本" + versionsInAppStore!, subTitle: describeStr)
+                    }
+                    
+                })
+            }catch let error1 as NSError{
+                print(error1)
+            }
+            
+            } as NSURLSessionTask
+        
+        dataTask.resume()
+        /*
+         NSURLConnection.sendAsynchronousRequest(request, queue: queue) { (response, data, error1) in
+         
+         do {
+         let appData =   try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary
+         print(appData!)
+         dispatch_async(dispatch_get_main_queue(), {
+         let versionsInAppStore = appData!["results"]![0]["version"] as? String
+         print(versionsInAppStore)
+         
+         let version1 = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+         print(version1)
+         if versionsInAppStore  == version1 {
+         print("已是最新")
+         } else {
+         print("更新")
+         }
+         
+         })
+         }catch let error1 as NSError{
+         print(error1)
+         }
+         
+         }
+         
+         */
+    }
+    
+    
+    /************************************/
+    // 微信支付回调
+    
+    
+    // 微信支付回调
+    
+    func onResp(resp: BaseResp!) {
+        if resp.isKindOfClass(PayResp) {
+            let response = resp as! PayResp
+            switch  response.errCode {
+            case WXSuccess.rawValue:
+                
+                // 发出微信支付成功通知
+                NSNotificationCenter.defaultCenter().postNotificationName("WEIXINPAYSUCCESS", object: nil)
+                
+            default:
+                
+<<<<<<< HEAD
+                // 发出支付失败通知
+                NSNotificationCenter.defaultCenter().postNotificationName("WEIXINPAYFAIL", object: nil)
+                
+=======
+              // 发出微信支付失败通知
+               NSNotificationCenter.defaultCenter().postNotificationName("WEIXINPAYFAIL", object: nil)
+                    
+>>>>>>> master
+                
+            }
+            
+        }
+    }
+    
+    
+    
+}
+

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Xcode 7.3" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AccountDetailModel" representedClassName=".AccountDetailModel" syncable="YES">
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="money" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="payId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="way" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BankModel" representedClassName=".BankModel" syncable="YES">
+        <attribute name="bankId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bankLogo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bankName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bankType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bindTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DataObject" representedClassName=".DataObject" syncable="YES"/>
+    <entity name="FinshDetail" syncable="YES">
+        <attribute name="arrivetime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="money" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="payWay" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photos" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="troubleDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usetime" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MessageModel" representedClassName=".MessageModel" syncable="YES">
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageCon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageNum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="msgId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recvUserid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendImageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendNickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendUserid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MyAccount" representedClassName=".MyAccount" syncable="YES">
+        <attribute name="balance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="income" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalAssets" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MyTeamModel" representedClassName=".MyTeamModel" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupScopeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupScoupValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="headimageurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scopename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scopevalue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suplevel1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suplevel2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suplevel3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userself" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userselfCreateTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userselfMemberState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userselfNickname" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Order" representedClassName=".Order" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appointmentTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="checkState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="describe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="headimageurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lng" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="modifyTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productModel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serviceItem" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="OrderDetail" representedClassName=".OrderDetail" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="aimAdress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="areaCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="checkState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clientName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="crmID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enginerImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expressCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hoyoID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lng" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productBrand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productModel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telephoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="troubleDescripe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="troubleHandleType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visitTime" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProductInfo" representedClassName=".ProductInfo" syncable="YES">
+        <attribute name="chCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="k3PJ" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numbers" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pjCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pjNO" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productsID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ScoreDetail" representedClassName=".ScoreDetail" syncable="YES">
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="headimageurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ScoreMessageModel" representedClassName=".ScoreMessageModel" syncable="YES">
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageCon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="msgId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recvUserid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendImageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendNickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendUserid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ServiceAreas" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createtime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupnumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lng" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Test" representedClassName=".Test" syncable="YES">
+        <attribute name="attribute12" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="bannerimgs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bdimgs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupdetails" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="headimageurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lng" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderabout" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="realname" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="scope" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usertoken" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserIdentifier" representedClassName=".UserIdentifier" syncable="YES">
+        <attribute name="groupId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scope" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AccountDetailModel" positionX="-54" positionY="135" width="128" height="150"/>
+        <element name="BankModel" positionX="-54" positionY="126" width="128" height="180"/>
+        <element name="DataObject" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="FinshDetail" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="MessageModel" positionX="45" positionY="135" width="128" height="210"/>
+        <element name="MyAccount" positionX="54" positionY="144" width="128" height="105"/>
+        <element name="MyTeamModel" positionX="160" positionY="192" width="128" height="360"/>
+        <element name="Order" positionX="-54" positionY="90" width="128" height="315"/>
+        <element name="OrderDetail" positionX="45" positionY="135" width="128" height="495"/>
+        <element name="ProductInfo" positionX="45" positionY="135" width="128" height="255"/>
+        <element name="ScoreDetail" positionX="-54" positionY="126" width="128" height="150"/>
+        <element name="ScoreMessageModel" positionX="54" positionY="144" width="128" height="195"/>
+        <element name="ServiceAreas" positionX="-54" positionY="63" width="128" height="180"/>
+        <element name="Test" positionX="45" positionY="135" width="128" height="60"/>
+        <element name="User" positionX="-54" positionY="0" width="128" height="345"/>
+        <element name="UserIdentifier" positionX="54" positionY="144" width="128" height="120"/>
+    </elements>
+</model>
